@@ -1,12 +1,12 @@
 # main links
 main:
-  - title: "Quick-Start Guide"
-    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-  # - title: "About"
-  #   url: https://mmistakes.github.io/minimal-mistakes/about/
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
+  # - title: "인스타그램"
+  #   url: https://instagram.com/pacdong
+  - title: "어바웃"
+    url: /about/
+  - title: "카테고리"
+    url: /categories/
+  - title: "포스트"
+    url: /posts/
   # - title: "Sitemap"
   #   url: /sitemap/
