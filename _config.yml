@@ -16,7 +16,7 @@ minimal_mistakes_skin    : contrast # "default" # "air", "aqua", "contrast", "da
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Pacdongs.DevLife"
+title                    : "코딩밖에 모르는 개발자"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Pacdong"
@@ -109,16 +109,16 @@ analytics:
 author:
   name             : "Pacdong"
   avatar           : "/assets/images/pacdong_face.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "코딩, 책, 운동밖에 모르는 개발자의 블로그"
+  bio              : "코딩, 책, 운동만 아는 개발자의 블로그"
   location         : "South Korea"
   email            :
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      # url: mailto:your.name@email.com
+      url: mailto:8000pac@naver.com
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
+      url: "https://pacdong.github.com"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       # url: "https://twitter.com/"
@@ -130,7 +130,7 @@ author:
       # url: "https://github.com/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+      url: "https://instagram.com/pacdong"
 
 # Site Footer
 footer:
@@ -288,7 +288,7 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: true
-      comments: # true
+      read_time: false
+      comments: true
       share: true
-      related: true
+      related: false
