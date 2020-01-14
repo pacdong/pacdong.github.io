@@ -99,9 +99,9 @@ social:
 
 # Analytics
 analytics:
-  provider               : false # false (default), "google", "google-universal", "custom"
+  provider               : "google-gtag" # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id          :
+    tracking_id          : "156152723"
     anonymize_ip         : # true, false (default)
 
 
@@ -109,7 +109,7 @@ analytics:
 author:
   name             : "Pacdong"
   avatar           : "/assets/images/pacdong_face.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "코딩, 책, 운동만 아는 개발자의 블로그"
+  bio              : "코딩, 책, 운동만 하는 개발자의 블로그"
   location         : "South Korea"
   email            :
   links:
