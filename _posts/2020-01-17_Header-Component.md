@@ -1,0 +1,100 @@
+---
+title: "Chapter6. Header Component"
+excerpt: "헤더 컴포넌트"
+
+categories:
+  - 인스타그램 클론코딩
+tags:
+  - Instagram
+  - Clone
+  - Coding
+  - React
+  - React-Native
+last_modified_at: 2020-01-17T08:14:30-15:30
+---
+노마드 코더의 InstaClone Header Component 편이 끝났습니다. 이 부분에서 중요하다고 개인적으로 생각하는 부분을 정리하는 시간을 가져보겠습니다.
+이번 헤더를 구성하는 시간에서는 제 개인적인 생각으로는 React Router에 대한 이해가 상당히 필요했고 또한 이번 클론코딩을 진행하면서 Router에 대한 개념이 확실하게 잡히는 시간이었습니다.
+
+그럼 먼저 여러 폴더들을 구성하는 기본적인 방법부터 시작하겠습니다.
+
+## Icon 정리
+
+이 부분은 다들 알고 계시리라고 생각이 됩니다. 기본적으로 Expo의 Vector Icon이나 Open Source 아이콘을 사용하기 위해서는 [@expo/vector-icon](https://expo.github.io/vector-icons/)과 같은 사이트에 접속하시어 url을 연결하는 작업을 해야합니다. 그러나 Screen.js 안에서 url을 가져오면 코드가 지저분해질 뿐더러 다른 아이콘으로 변경하고 싶을 때 해당 스크린을 들어가서 일일이 변경해야한다는 불편함 때문에 Icon 만 관리하는 페이지를 따로 만드는 것은 아주 기본적인 상식입니다. 다만 이렇게 한번 더 정리하고 가는 것은 노마드 코더가 다루는 방식에 대해 얘기하고 싶어서 입니다.
+
+`src/Component/Icon.js`
+```javascript
+import React from "react";
+
+export const Compass = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+  >
+    <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 5.999l-5.621 2.986c-.899-.104-1.806.191-2.474.859-.662.663-.95 1.561-.862 2.428l-3.043 5.728 5.724-3.042c.884.089 1.772-.205 2.432-.865.634-.634.969-1.524.859-2.473l2.985-5.621zm-5.97 7.22c-.689 0-1.25-.559-1.25-1.249-.001-.691.559-1.251 1.25-1.25.69 0 1.25.56 1.25 1.25-.001.689-.56 1.249-1.25 1.249z" />
+  </svg>
+);
+```
+
+보통 저는 아이콘의 주소만 따로 가져오는 방법을 택했습니다. 왜냐하면 작업을 할 때, 디자이너가 width와 height가 기본적으로 24px 또는 48px로 정리된 파일로 만들어 주었기에 큰 불편함을 느끼지 못하였습니다. 또한 Screen에 따라서 아이콘이 가끔은 다르게 표시하고 싶을 때가 있어 InLine 방식으로 스타일을 선언하기도 하였습니다.  
+
+노마드 코더는 위의 코드와 같이 아이콘 링크와 더불어 기본적인 스타일까지 한번에 지정하여 아이콘을 관리하였습니다. 이러한 방법이 아주 사소한 습관 차이지만 나중에 코드를 수정할 때에는 더 좋을 것 같다는 생각이 들어 한번 더 되짚어보자는 의미에서 이렇게 기술하였고 또한 svg 파일로 작업하는 것이 더 효율적임을 다시 한번 상기하게 되었습니다.
+
+
+## React-Router-Dom
+
+가장 중요하다고 서두에서 말씀 드렸던 React Router에 대해 개념을 정리하고자 합니다. 앞선 글에서 Router에 대한 개념은 특정 주소로 유저가 접근하였을 때 URL을 Client 단에서 지정하여 보내줄 수 있도록 해주는 라이브러리라 설명을 드린 적이 있습니다. 여기서 추가적으로 HashRouter에 대해 보충 설명을 하고자 합니다.
+
+>HashRouter란
+>react-router-dom은 단일 페이지 앱의 내비게이션 이력을 관리할 수 있는 다양한 방법을 제공한다. HashRouter는 클라이언트를 위해 설계된 라우터다. Hash(#)는 앵커링크를 정의할 때 쓰였다. 주소창의 현재 페이지 경로 뒤에 # 식별자를 입력하면 브라우저는 서버 요청을 보내지 않고, 현재 페이지에서 식별자에 해당하는 id 애트리뷰트가 있는 엘리먼트를 찾아서 그 엘리먼트의 위치를 화면에 보여준다.
+
+라고 합니다. 
+
+노마드코더가 다루는 방식 중에 초기에는 
+```javascript
+// Components/Routes.js
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import A from "../Screens/A";
+import B from "../Screens/B";
+import C from "../Screens/C";
+
+export default () => (
+  <Router>
+    <Route path="/A" component={A} />
+    <Route path="/B" component={C} />
+    <Route path="/C" component={C} />
+  </Router>
+)
+```
+로 다루었습니다. <Router> 안에 <Route>와 <Path>를 통해 경로를 설정하고 해당 컴포넌트를 임포하여 라우터의 기능으로 해당 스크린으로 이동하였습니다. 강의를 진행하다보면 HeaderLink라는 컴포넌트를 새롭게 만드는 모습을 볼 수가 있습니다. 이는 React-Router-Dom의 Link 기능을 다시 재정의 하여 사용하는 것으로 일반적인 Link의 기능은 다음과 같습니다.
+
+> Link는 content를 유저가 눌렀을 때 to 속성으로 지정된 url로 이동합니다.
+
+우선 위의 코드를 바꾸어 보면
+```javascript
+import React from 'react';
+import { Link, withRouter } from "react-router-dom";
+import A from "../Screens/A";
+
+function Header (({ history }) {
+  return (
+  <Header>
+    <HeaderLink to="/A" />
+  </Header>
+)};
+
+export default withRouter(Header);
+```
+우선 HeaderLink는 Link라고 생각하시면 됩니다. 노마드 코더가 재정의한 기능이므로 여기서는 그냥 진행하도록 하겠습니다. Link to는 해당 경로로 이동시켜주는 기능을 합니다. **Link to는 새로고침하지 않고 이동하여 속도가 빠른 이점**이 있습니다. 또한 Header는 withRouter로 감싸주어 export 하게 됩니다. 이렇게 하는 이유는 withRouter가 history.push로 onChange와 value 값을 전달하기에 그렇습니다. 
+
+인스타 클론에서 이렇게 하는 이유는 Search에서 키워드랑 같이 이동하고 싶기에(인스타에서 해쉬태그를 검색하는 기능) 해당 스크린으로 이동하여도 키워드 값을 같이 전달하려고 하는 기능입니다. Search 칸에서 키워드를 입력하고 Enter를 누르면 onSubmit이 동작하고 키워드와 같이 Link to 가 지정한 경로로 이동하게 됩니다. history는 withRouter와 함께 이동하였기에 존재하지 않습니다.
+
+다만 주의사항으로는 가끔 Route에서 여러가지가 동시에 보일 때가 있습니다. 이렇 때는 <Fragement>로만 감싸지 말고 <Swtich>로 감싸 주면 됩니다. Swtich는 하나의 Route만 렌더링 해주는 기능을 가지고 있습니다. 여기까지 구성한 화면입니다.
+<center><img src="assets/images/instagramClone/searchAndKeyword.png" width="100%"></center>
+
+
+### 참고자료
+
+- [academy.nomadcoders.InstagramClonCoding](https://academy.nomadcoders.co/courses/enrolled/503371)
