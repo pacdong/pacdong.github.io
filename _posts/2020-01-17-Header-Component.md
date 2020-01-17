@@ -95,6 +95,26 @@ export default withRouter(Header);
 <center><img src="assets/images/instagramClone/searchAndKeyword.png" width="100%"></center>
 
 
+## react-apollo-hooks Error
+
+마지막으로 많이 고민하셨을 Error인 `TypeError: Cannot read property 'me' of undefined`로 고민을 많이 하셨을 것이라고 생각합니다. react-apollo-hooks가 Defricated 되면서 나타나는 버그입니다.   
+
+첫번째 해답으로는 이제는 `npm install @apollo/react-hooks` 로 설치하시고 `import { useQuery } from '@apollo/react-hooks';` 진행하시면 됩니다. 바뀐 부분에 대한 예제는 [Apollo-Hooks](https://www.apollographql.com/docs/react/api/react-hooks/)여기로 들어가시면 알 수 있습니다.   
+
+두번째 방법으로 새로이 적용된 Apollo의 @apollo/react-hooks 사용법이 조금 달라저 다른 여러 Error를 띄우는 것이 걱정이 되시어 Defricated 된 react-apollo-hooks를 그대로 쓰고 싶은 경우에는 노마드 코더의 코드   
+`src/Component/Header.js`에서
+```javascript
+// const { data } =useQuery(ME); 대체
+const { data, loading } = useQuery(ME); // loading 추가
+if (loading) return "";
+```
+이렇게 대체하여 주시면 됩니다. useQuery에서 loading은 boolean 값을 결과로 받고 요청이 진행중인지를 나태내는 값입니다. 여러번 console을 찍어본 결과 위와 같이 loading한 이후 return을 하지 않으면 { data } 값에서 me를 찾지 못하였습니다.   
+
+마지막 세번째 방법으로 데이터를 추출하지 않고 변수를 설정하여 `const data = useQuery(ME)`를 하면 또한 동작은 잘 됩니다. 이 방법은 data 변수를 직접 선언하여 ME에 해당하는 result들을 모두 받아오는 방식이기에 과도한 network의 사용성은 있으나 테스트 하기에는 또한 방법이 될 수 있습니다.
+  
+이로써 노마드 코더에서 업데이트 된 함수의 사용 때문에 벌어지는 Header 편에서 에러를 잡아보았습니다.
+
+
 ### 참고자료
 
 - [academy.nomadcoders.InstagramClonCoding](https://academy.nomadcoders.co/courses/enrolled/503371)
