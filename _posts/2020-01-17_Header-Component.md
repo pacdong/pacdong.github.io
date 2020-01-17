@@ -25,7 +25,7 @@ last_modified_at: 2020-01-17T08:14:30-15:30
 ```javascript
 import React from "react";
 
-export const Compass = () => (
+export const Compass = () => ()
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
