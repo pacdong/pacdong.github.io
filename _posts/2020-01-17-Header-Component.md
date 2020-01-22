@@ -19,7 +19,7 @@ last_modified_at: 2020-01-17T08:14:30-15:30
 
 ## Icon 정리
 
-이 부분은 다들 알고 계시리라고 생각이 됩니다. 기본적으로 Expo의 Vector Icon이나 Open Source 아이콘을 사용하기 위해서는 [@expo/vector-icon](https://expo.github.io/vector-icons/)과 같은 사이트에 접속하시어 url을 연결하는 작업을 해야합니다. 그러나 Screen.js 안에서 url을 가져오면 코드가 지저분해질 뿐더러 다른 아이콘으로 변경하고 싶을 때 해당 스크린을 들어가서 일일이 변경해야한다는 불편함 때문에 Icon 만 관리하는 페이지를 따로 만드는 것은 아주 기본적인 상식입니다. 다만 이렇게 한번 더 정리하고 가는 것은 노마드 코더가 다루는 방식에 대해 얘기하고 싶어서 입니다.
+이 부분은 다들 알고 계시리라고 생각이 됩니다. 기본적으로 Expo의 Vector Icon이나 Open Source 아이콘을 사용하기 위해서는 [@expo/vector-icon](https://expo.github.io/vector-icons/)과 같은 사이트에 접속하시어 url을 연결하는 작업을 해야합니다. 그러나 Screen.js 안에서 url을 가져오면 코드가 지저분해질 뿐더러 다른 아이콘으로 변경하고 싶을 때 해당 스크린을 들어가서 일일이 변경해야한다는 불편함 때문에 Icon 만 관리하는 페이지를 따로 만드는 것은 아주 기본적인 상식입니다. 다만 이렇게 한번 더 정리하고 가는 것은 노마드 코더가 다루는 방식에 대해 얘기하고 싶어서입니다.
 
 `src/Component/Icon.js`
 ```javascript
