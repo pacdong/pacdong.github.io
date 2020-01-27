@@ -72,12 +72,12 @@ ins {
   text-decoration: none;
   border-bottom: 1px solid $text-color;
   a {
-    color: black;
+    color: inherit;
   }
 }
 
 del a {
-  color: black;
+  color: inherit;
 }
 
 /* reduce orphans and widows when printing */
@@ -99,7 +99,7 @@ fieldset {
 
 abbr[title],
 abbr[data-original-title] {
-  text-decoration-color: black;
+  text-decoration: none;
   cursor: help;
   border-bottom: 1px dotted $text-color;
 }
@@ -265,7 +265,7 @@ figure {
 
 figcaption {
   margin-bottom: 0.5em;
-  color: $muted-text-color;
+  color: black;
   font-family: $caption-font-family;
   font-size: $type-size-6;
 
