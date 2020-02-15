@@ -19,16 +19,15 @@ last_modified_at: 2020-01-29T08:19:30-20:30
 
 이제 다시 Login Part로 넘어가서 하나씩 살펴보도록 하겠습니다. 이번시간에 정리할 내용은 Navigation의 추가 설명으로 아래와 같습니다.
    <br>
-- createBottomTabNavigator <br>
-- Navigation Icon <br>
+- Navigation Tab Icon(createBottomTabNavigator) <br>
+- createStackNavigator <br>
 - Navigation Header  <br>
 - Navigation Back title  <br>
-- createStackNavigator <br>
 
 
 --- 
 
-## Navigation Tab Icon
+## Navigation Tab Icon(createBottomTabNavigator)
 
 `createBottomTabNavigator`인 [BattomTabNavigator](https://reactnavigation.org/docs/en/bottom-tab-navigator.html)에서 여러 옵션들을 통해서 아이콘과 텍스트를 보여주게 할 수도 변경할 수도 있습니다. 또한, `tabBarIcon`이라는 옵션을 통해 포커스 되었을 때 사용자가 해당 탭에 있다는 효과를 주기 위하여 색을 바꿀 수도 있습니다. 
 
@@ -184,6 +183,64 @@ const stackFactory = (initialRoute, customConfig) =>
   );
 ```
 defaultNavigationOptions으로 위와같이 설정하면 됩니다. Nomard Coder는 headerBackTitle을 null로 지정하였으나 어찌된 영문인지 저에게는 정상적으로 동작하지 않아서 또다른 value인 noContext를 지정해주었더니 잘 동작하였습니다. 참고하시어 진행하면 좋을 듯 합니다.
+
+
+## MessagesLink(createStackNavigator)
+
+인스타그램을 보시면 상단 헤더의 우측 편에 메세지 링크로 보내는 아이콘이 존재합니다. 우선 이 부분은 `TabNavigation.js` 부분에서 아래와 같이 타이틀에 컴포넌트를 연결 시켜 줍니다.
+```javascript
+import MessagesLink from "../components/AddPostLink";
+//.. 기타 코드 중략
+
+export default createBottomTabNavigator(
+  {
+    Community: {
+      screen: stackFactory(Community, {
+        title: "Community",
+        headerRight: () => <MessagesLink />,
+        headerTitle: () => (
+          <Image style={{ height: 32 }} resizeMode="contain" source={LOGO} />
+        )
+      }),
+      navigationOptions: {
+        tabBarIcon: ({ focused }) => (
+          <NavIcon
+            focused={focused}
+            name={Platform.OS === "ios" ? "ios-chatbubbles" : "md-chatbubbles"}
+          />
+        )
+      }
+    },
+  }
+```   
+위와 같이 createStackNavigationOption으로 headerRight를 컴포넌트로 연결합니다. 그럼 컴포넌트에서 자세한 내용을 담아보겠습니다.
+
+`components/MessagesLink.js`
+```javascript
+import React from "react";
+import { Platform } from "react-native";
+import styled from "styled-components";
+import { Ionicons } from "@expo/vector-icons";
+import { withNavigation } from "react-navigation";
+import styles from "../styles";
+import NavIcon from "./NavIcon";
+
+const Container = styled.TouchableOpacity`
+  padding-right: 20px;
+`;
+
+export default withNavigation(({ navigation }) => (
+  <Container onPress={() => navigation.navigate("MessageNavigation")}>
+    <NavIcon
+      name={Platform.OS === "ios" ? "ios-paper-plane" : "md-paper-plane"}
+    />
+  </Container>
+));
+```   
+이 부분이 컴포넌트 부분입니다. 먼저 벡터 아이콘 컴포넌트인 NavIcons을 통해서 아이콘을 `TouchableOpacity`로 감싸주어 해당 아이콘이 눌려 졌을 때 MEssageNavigation으로 보내도록 설정합니다. 이렇게 간단하게 헤더 부분에 아이콘을 넣어 다른 네비게이션으로 보낼 수 있습니다.    
+
+한가지 더 응용을 하면 이런 부분을 스크린에 직접 어떠한 버튼을 넣었을 때 `TouchableOpacity`로 감싸 주어 `navigation.navigate("원하는스크린")`로 보내주기만 하면 이동을 할 수 있습니다. 이처럼 매우 간편한 네이게이션 편이었습니다.
+
 
 ### 참고자료
 
