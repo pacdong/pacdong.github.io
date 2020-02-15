@@ -10,7 +10,7 @@ tags:
   - Coding
   - React
   - React-Native
-last_modified_at: 2020-01-29T08:19:30-20:30
+last_modified_at: 2020-02-10T08:19:30-20:30
 ---
 
 **React Native** Expo의 활용성이 더욱 커지고 있습니다. 이전 Expo에서는 외부의 API를 쓸 수 없어서 효용 가치가 떨어졌지만 여러 라이브러리를 종합하여 쓰는 현 생태계에서 버전에 맞도록 버그없이 설치한다는 것은 어렵고 불편한 일입니다. 그렇지만 `Expo insall (API)`와 같은 명령어를 통해 `yan add (API)`를 쓰는 것과 같이 설치하면 버전을 Expo에서 맞추어 설치하여 주기 때문에 Warning 없이 설치되는 것은 아직 React-Native 초보인 저는 더 편하였습니다.    
